@@ -1,6 +1,6 @@
 {
-	"name" : "vardumper/wordpress-xslt-frontend",
-	"description" : "This plugin dactivates the regular WordPress frontend and instead uses XML and XSLT handles all frontend requests.",
+	"name" : "vardumper/wordpress-twig-frontend",
+	"description" : "A plugin for Wordpress which provides a twig frontend.",
 	"type" : "wordpress-plugin",
 	"keywords" : [
 		"wordpress"
