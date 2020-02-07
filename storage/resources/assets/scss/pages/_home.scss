@@ -1,0 +1,1194 @@
+.slider {
+	color: $white;
+	text-align: center;
+	font-family: 'Univers LT W01_45 Light1475944';
+	font-size: 16px;
+	line-height: 1.5;
+
+	@media print {
+		text-align: left;
+	}
+
+	.container {
+		position: relative;
+		max-width: 1400px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+
+		@include media ('<=1400px') {
+			left: 0;
+			transform: translateX(0);
+			width: auto;
+		}
+
+		@media print {
+			max-width: none;
+		}
+
+		&:after {
+			width: 99999px;
+			position: absolute;
+			bottom: 0;
+			height: 70px;
+			right: 33.33%;
+			background: #f5f8fa;
+			content: '';
+			margin-right: 9px;
+
+			@include media ('<tablet') {
+				display: none;
+			}
+		}
+	}
+
+	.slide {
+		background-size: cover;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		height: 840px;
+
+		@include media ('<desktop') {
+			height: 700px;
+		}
+
+		@include media ('<tablet') {
+			height: 600px;
+		}
+
+		@include media ('<phone') {
+			height: 500px;
+		}
+
+		@media print {
+			height: auto;
+		}
+	}
+
+	.hold {
+		width: 100%;
+		padding: 50px 0 196px;
+
+		@include media ('<tablet') {
+			padding-bottom: 100px;
+		}
+
+		@media print {
+			padding: 0;
+		}
+	}
+
+	h1 {
+		color: $white;
+		margin-bottom: 20px;
+	}
+
+	.text {
+		max-width: 400px;
+		margin: 0 auto 30px;
+
+		@media print {
+			max-width: none;
+			margin: 0;
+		}
+	}
+}
+
+.banner {
+	position: relative;
+	color: $white;
+	text-align: center;
+	font-family: 'Univers LT W01_45 Light1475944';
+	font-size: 16px;
+	line-height: 1.5;
+	z-index: 1;
+
+	@media print {
+		text-align: left;
+	}
+
+	.container {
+		position: relative;
+		max-width: 1400px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		height: 924px;
+
+		@include media ('<=1400px') {
+			left: 0;
+			transform: translateX(0);
+			width: auto;
+		}
+
+		@include media ('<desktop') {
+			height: 700px;
+		}
+
+		@include media ('<tablet') {
+			height: 500px;
+		}
+
+		@media print {
+			display: block;
+			min-height: 0;
+		}
+
+	}
+
+	.bg-holder {
+		display: flex;
+		align-items: flex-end;
+
+		@media print {
+			display: block;
+		}
+	}
+
+	.hold {
+		width: 100%;
+		padding: 50px 0 180px;
+
+		@include media ('<desktop') {
+			padding-bottom: 100px;
+		}
+
+		@media print {
+			padding: 0;
+		}
+	}
+
+	h1 {
+		color: $white;
+		margin-bottom: 21px;
+	}
+
+	.text {
+		max-width: 400px;
+		margin: 0 auto 30px;
+
+		@media print {
+			max-width: none;
+			margin-bottom: 10px;
+		}
+	}
+
+	.btn-play {
+		margin: 0 auto 53px;
+
+		@include media ('<desktop') {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+.intro-text {
+	background: #4e93fb;
+	padding: 37px 75px 18px;
+	font-family: 'Univers LT W01_55 Roman1475956';
+	color: $white;
+	font-size: 18px;
+	line-height: 1.4444;
+	position: relative;
+	top: -182px;
+	margin: 0 -31px -150px 0;
+	min-height: 152px;
+
+	@include media ('<tablet') {
+		padding: 15px;
+		top: -100px;
+		margin: 0 0 -75px;
+		font-size: 13px;
+	}
+
+	@media print {
+		margin: 0 0 15px;
+		position: static;
+		padding: 0;
+		min-height: 0;
+	}
+
+	a {
+		color: $white;
+		text-decoration: none;
+
+		&:hover {
+			color: #2e3033;
+		}
+	}
+
+	.title {
+		font-family: 'Univers LT W01_65 Bold1475968';
+		font-size: 22px;
+		line-height: 1.2;
+		text-transform: uppercase;
+		display: block;
+		letter-spacing: 0.085em;
+		margin-bottom: 2px;
+		color: $white;
+		font-weight: 400;
+
+		@media print {
+			font-size: 16px;
+		}
+	}
+}
+
+.thumbnail {
+
+	@media print {
+		display: none;
+	}
+
+	.col-2 {
+		display: block;
+	}
+}
+
+.intro {
+	color: #2e3033;
+	font-size: 16px;
+	line-height: 1.75;
+	margin: 0 auto 89px;
+	max-width: 600px;
+	text-align: center;
+
+	@include media ('<widescreen') {
+		margin-bottom: 50px;
+		max-width: 750px;
+	}
+
+	@include media ('<desktop') {
+		margin-bottom: 40px;
+	}
+
+	@include media ('<tablet') {
+		margin-bottom: 30px;
+	}
+
+	@media print {
+		text-align: left;
+		max-width: none;
+		margin-bottom: 20px;
+	}
+}
+
+.about-section {
+
+	.intro {
+		margin-bottom: 101px;
+
+		@include media ('<widescreen') {
+			margin-bottom: 50px;
+		}
+
+		@include media ('<desktop') {
+			margin-bottom: 40px;
+		}
+
+		@include media ('<tablet') {
+			margin-bottom: 30px;
+		}
+	}
+
+	.article {
+		box-shadow: none;
+		background: none;
+		padding-bottom: 0;
+
+		@include media ('<phone') {
+			margin-bottom: 0;
+		}
+	}
+
+	.description {
+		padding-left: 0;
+		padding-right: 0;
+		padding-bottom: 30px;
+		max-width: none;
+
+		@media print {
+			padding: 0;
+		}
+	}
+}
+
+#two-columns {
+	position: relative;
+	z-index: 2;
+
+	@include media ('<tablet') {
+		background: $white;
+	}
+	
+	.container {
+		position: relative;
+		z-index: 1;
+
+		&:before,
+		&:after {
+			position: absolute;
+			content: '';
+			background: $white;
+			z-index: -1;
+
+			@include media ('<tablet') {
+				display: none;
+			}
+		}
+
+		&:before {
+			right: 33.33%;
+			top: -70px;
+			bottom: 62px;
+			left: -126px;
+			margin-right: -15px;
+		}
+
+		&:after {
+			left: 66.66%;
+			top: 0;
+			bottom: 0;
+			right: -126px;
+			margin-left: 15px;
+		}
+	}
+
+	.article {
+		display: block;
+		height: auto;
+
+		@media print {
+			display: flex;
+		}
+	}
+}
+
+#content {
+	padding-top: 30px;
+
+	.article {
+		box-shadow: none;
+		background: none;
+
+		@include media ('<tablet') {
+			margin-bottom: 0;
+		}
+	}
+
+	.col-full-width {
+		padding-top: 28px;
+		padding-bottom: 28px;
+
+		@include media ('<tablet') {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		@media print {
+			padding: 0 15px 15px;
+		}
+	}
+
+	.flex {
+		@media print {
+			margin: 0 -15px;
+		}
+
+		.col-2 {
+			@media print {
+				max-width: 20%;
+				padding: 0 15px !important;
+				display: inline-block;
+				vertical-align: top;
+			}
+
+			figure {
+				@media print {
+					width: 200px !important;
+				}
+			}
+		}
+	}
+}
+
+#sidebar {
+	padding-top: 30px;
+	display: block;
+
+	@include media ('<tablet') {
+		max-width: none;
+		flex: 0 0 100%;
+	}
+
+	@media print {
+		padding: 0;
+		max-width: none;
+	}
+
+	.articles-hold {
+		@include media ('<tablet') {
+			display: flex;
+			flex: 0 0 100%;
+			margin: 0 -15px;
+		}
+
+		@include media ('<sm-phone') {
+			display: block;
+		}
+
+		@media print {
+			display: block;
+		}
+
+		.article-hold {
+			@include media ('<tablet') {
+				max-width: 50%;
+				flex: 0 0 50%;
+				padding: 0 15px 25px;
+			}
+
+			@include media ('<sm-phone') {
+				max-width: none;
+			}
+
+			@media print {
+				max-width: none;
+				padding: 0 15px;
+			}
+		}
+	}
+
+	.main-title {
+		top: -78px;
+		margin-bottom: -57px;
+
+		@media print {
+			top: 0;
+			padding: 0 15px;
+			margin-bottom: 10px;
+		}
+	}
+
+	.article {
+		margin-bottom: 0;
+		padding-bottom: 40px;
+		font-family: 'Univers LT W01_45 Light1475944';
+		height: 100%;
+
+		@include media ('<sm-phone') {
+			height: auto;
+		}
+	}
+}
+
+.releases-section {
+	margin-bottom: 223px;
+	margin-top: -62px;
+
+	@include media ('<desktop') {
+		margin-bottom: 180px;
+	}
+
+	@include media ('<tablet') {
+		margin-top: 0;
+	}
+
+	@include media ('<phone') {
+		margin-bottom: 60px;
+	}
+
+	@media print {
+		margin: 0;
+	}
+
+	.bg-holder {
+		position: relative;
+		display: flex;
+
+		@media print {
+			height: auto;
+			display: block;
+		}
+	}
+
+	.container {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		position: relative;
+		z-index: 1;
+		align-items: flex-end;
+		padding-top: 200px;
+
+		@include media ('<widescreen') {
+			padding-top: 100px;
+		}
+
+		@include media ('<tablet') {
+			padding-top: 60px;
+		}
+
+		@media print {
+			display: block;
+		}
+
+		&:before ,
+		&:after {
+			width: 9999px;
+			position: absolute;
+			content: '';
+			background: #f5f8fa;
+			z-index: -1;
+
+			@include media ('<tablet') {
+				display: none;
+			}
+
+			@media print {
+				display: none;
+			}
+		}
+
+		&:before {
+			height: 62px;
+			left: 66.66%;
+			top: 0;
+			margin-left: 15px;
+		}
+
+		&:after {
+			height: 90px;
+			right: 66.66%;
+			bottom: 0;
+			margin-right: 15px;
+		}
+	}
+
+	h2 {
+		color: $white;
+		letter-spacing: 0.18em;
+		margin-bottom: 22px;
+		font-family: 'Univers LT W01_75 Black1475980';
+	}
+
+	.intro {
+		max-width: none;
+		color: $white;
+		margin-bottom: 95px;
+
+		@include media ('<widescreen') {
+			margin-bottom: 50px;
+		}
+
+		@include media ('<desktop') {
+			margin-bottom: 40px;
+		}
+
+		@include media ('<tablet') {
+			margin-bottom: 30px;
+		}
+
+		@media print {
+			margin: 0 0 30px;
+		}
+	}
+
+	.hold {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+
+		@media print {
+			display: block;
+			padding: 0;
+		}
+	}
+
+	&.style-01 {
+		position: relative;
+		z-index: 2;
+		margin-top: -95px;
+
+		.bg-img {
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
+			width: 100%;
+
+			@media print {
+				display: none;
+			}
+		}
+
+		.intro {
+			p {
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+
+				@include media ('<tablet') {
+					max-width: none;
+				}
+			}
+		}
+
+		.container {
+			padding-top: 288px;
+
+			@include media ('<widescreen') {
+				padding-top: 130px;
+			}
+
+			@include media ('<desktop') {
+				padding-top: 120px;
+			}
+
+			@include media ('<tablet') {
+				padding-top: 60px;
+			}
+
+			&:before {
+				display: none;
+			}
+		}
+	}
+
+	.shares {
+		color: rgba(#737980, .5);
+		position: absolute;
+		left: 60px;
+		top: 93px;
+		font-style: italic;
+
+		@include media ('<tablet') {
+			top: 15px;
+			left: 15px;
+		}
+	}
+}
+
+.desktop {
+	@include media ('<tablet') {
+		display: none;
+	}
+}
+
+.mobile {
+	@include media ('>=tablet') {
+		display: none;
+	}
+}
+
+.two-col {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: -107px;
+
+	@include media ('<phone') {
+		display: block;
+		margin: 0;
+	}
+
+	@media print {
+		display: block;
+		margin: 0;
+	}
+}
+
+.posts {
+	background: #4e93fb;
+	max-width: 40.2%;
+	padding: 36px 73px 63px;
+	flex: 0 0 40.2%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	@include media ('<widescreen') {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	@include media ('<phone') {
+		max-width: none;
+		height: auto;
+		display: block;
+	}
+
+	@media print {
+		max-width: none;
+		padding: 0;
+		display: block;
+	}
+
+	a {
+		color: #fff;
+	}
+
+	.date ,
+	.title {
+		font: 16px 'Univers LT W01_45 Light1475944';
+		position: relative;
+		padding-left: 84px;
+		color: rgba($white, .5);
+		display: block;
+		margin-bottom: 18px;
+
+		@media print {
+			padding-left: 0;
+		}
+
+		&:before {
+			width: 76px;
+			height: 1px;
+			background: rgba($white, .5);
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			content: '';
+		}
+	}
+
+	.post-title {
+		display: block;
+		font: 18px/1.2222 'Univers LT W01_65 Bold1475968'; 
+
+		@media print {
+			font-size: 12px;
+			font-weight: 400;
+		}
+
+		a {
+			color: $white;
+			text-decoration: none;
+
+			&:hover {
+				color: #2e3033;
+			}
+		}
+	}
+
+	.post {
+		padding-bottom: 25px;
+		max-width: 300px;
+
+		@include media ('<phone') {
+			max-width: none;
+		}
+
+		@media print {
+			max-width: none;
+			min-height: 0;
+			margin-bottom: 20px !important;
+		}
+
+		&:last-child {
+			padding-bottom: 15px;
+
+			@media print {
+				min-height: 0;
+			}
+		}
+	}
+}
+
+.right-block {
+	max-width: 59.8%;
+	flex: 0 0 59.8%;
+	padding-top: 90px;
+	padding-bottom: 107px;
+
+	@include media ('<phone') {
+		max-width: none;
+		padding-bottom: 0;
+	}
+
+	@media print {
+		max-width: none;
+		padding-bottom: 0;
+	}
+}
+
+.video-block {
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	min-height: 391px;
+	position: relative;
+	padding: 34px 75px;
+
+	@include media ('<widescreen') {
+		padding: 35px 15px;
+	}
+
+	@media print {
+		height: auto;
+		padding: 0;
+		min-height: 0;
+	}
+
+	.title {
+		font: 16px 'Univers LT W01_55 Roman1475956';
+		position: relative;
+		padding-left: 84px;
+		color: rgba($white, .5);
+		display: block;
+		margin-bottom: 18px;
+		text-transform: capitalize;
+		font-weight: 400;
+
+		@media print {
+			padding-left: 0;
+		}
+
+		&:before {
+			width: 76px;
+			height: 1px;
+			background: rgba($white, .5);
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			content: '';
+		}
+	}
+
+	.video-title {
+		display: block;
+		font: 18px/1.2222 'Univers LT W01_65 Bold1475968';
+		color: $white;
+		max-width: 300px;
+
+		a {
+			color: $white;
+			text-decoration: none;
+
+			&:hover {
+				color: #fac228;
+			}
+		}
+	}
+
+	.btn-play {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50% , -50%);
+	}
+}
+
+.blockquote-block {
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	min-height: 394px;
+	position: relative;
+	padding: 50px;
+	display: flex;
+	color: $white;
+	text-align: center;
+
+	@include media ('<widescreen') {
+		padding: 35px 15px;
+	}
+
+	@media print {
+		display: block;
+		padding: 0;
+		min-height: 0;
+		text-align: left;
+	}
+
+	.blockquote-hold {
+		width: 100%;
+	}
+
+	blockquote {
+		font: 22px/1.6818 'Univers LT W01_55 Roman1475956';
+		position: relative;
+		padding-top: 79px;
+		margin: 0 0 51px;
+
+		@include media ('<tablet') {
+			font-size: 18px;
+		}
+
+		@media print {
+			padding: 20px 0 0;
+			margin-bottom: 15px;
+			font-size: 12px;
+			text-transform: none;
+		}
+
+		&:before {
+			position: absolute;
+			top: 23px;
+			left: 50%;
+			transform: translateX(-50%);
+			font-family: 'icomoon';
+			content: "\e902";
+			font-size: 33px;
+			line-height: 1;
+		}
+	}
+
+	q {
+		display: block;
+		quotes: none;
+		text-transform: uppercase;
+		margin-bottom: 11px;
+	}
+
+	cite {
+		display: block;
+		font-style: normal;
+		font-size: 16px;
+	}
+}
+
+.news-section {
+	margin-bottom: 83px;
+
+	@include media ('<tablet') {
+		margin-bottom: 50px;
+	}
+
+	h2 {
+		margin-bottom: 24px;
+	}
+
+	.intro {
+		margin-bottom: 88px;
+
+		@include media ('<widescreen') {
+			margin-bottom: 50px;
+		}
+
+		@include media ('<desktop') {
+			margin-bottom: 40px;
+		}
+
+		@include media ('<tablet') {
+			margin-bottom: 30px;
+		}
+
+		@media print {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.movie-section {
+	margin-bottom: 158px;
+
+	@include media ('<desktop') {
+		margin-bottom: 100px;
+	}
+
+	@include media ('<tablet') {
+		margin-bottom: 60px;
+	}
+
+	@media print {
+		display: none;
+	}
+
+	.slide {
+		height: 1239px;
+		position: relative;
+		display: flex;
+		background-size: cover;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+
+		@include media ('<widescreen') {
+			height: auto;
+		}
+
+		@media print {
+			height: auto;
+			display: block;
+		}
+	}
+
+	.container {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		position: relative;
+		z-index: 1;
+
+		@include media ('<widescreen') {
+			padding-bottom: 100px;
+		}
+
+		@include media ('<tablet') {
+			padding-bottom: 40px;
+		}
+
+		&:before ,
+		&:after {
+			width: 9999px;
+			position: absolute;
+			content: '';
+			background: #f5f8fa;
+			z-index: -1;
+
+			@include media ('<tablet') {
+				display: none;
+			}
+		}
+
+		&:before {
+			height: 65px;
+			left: 66.66%;
+			top: 0;
+			margin-left: 15px;
+		}
+
+		&:after {
+			height: 63px;
+			right: 66.66%;
+			bottom: 0;
+			margin-right: 15px;
+		}
+	}
+
+	h2 {
+		color: $white;
+		margin-bottom: 23px;
+	}
+
+	.intro {
+		max-width: none;
+		color: $white;
+		margin-bottom: 99px;
+
+		@include media ('<widescreen') {
+			margin-bottom: 50px;
+		}
+
+		@include media ('<desktop') {
+			margin-bottom: 40px;
+		}
+
+		@include media ('<tablet') {
+			margin-bottom: 30px;
+		}
+	}
+
+	.hold {
+		padding-top: 181px;
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+
+		@include media ('<widescreen') {
+			padding-top: 100px;
+		}
+
+		@include media ('<tablet') {
+			padding: 60px 0 0;
+		}
+	}
+
+	.article-block {
+		background-size: cover;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		position: relative;
+		min-height: 596px;
+		color: $white;
+		padding: 66px 73px 110px;
+		margin-bottom: 30px;
+		height: 100%;
+
+		@include media ('<widescreen') {
+			padding: 66px 30px 110px;
+			min-height: 400px;
+		}
+
+		@include media ('<desktop') {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+		@include media ('<tablet') {
+			min-height: 200px;
+			padding: 30px 10px 80px;
+		}
+
+		@media print {
+			min-height: 0;
+		}
+
+		.description {
+			max-width: 280px;
+
+			@media print {
+				max-width: none;
+			}
+		}
+
+		h3 {
+			font:700 18px/1.2222 $base-font-sans-serif;
+			margin-bottom: 10px;
+			color: $white;
+
+			a {
+				color: $white;
+				text-decoration: none;
+
+				&:hover {
+					color: #4e93fb;
+				}
+			}
+		}
+
+		.meta {
+			color: $white;
+
+			a {
+				color: $white;
+			}
+		}
+
+		.shares {
+			color: rgba($white, .5);
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			padding: 39px 74px;
+			width: 100%;
+			background: rgba(#05404b, .2);
+			font-style: italic;
+
+			@include media ('<widescreen') {
+				padding: 18px 30px;
+			}
+
+			@include media ('<desktop') {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+
+			@include media ('<tablet') {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			@media print {
+				position: static;
+				display: block;
+				padding-top: 10px;
+			}
+		}
+
+		.btn {
+			margin: 22px 0 0 13px;
+		}
+	}
+}

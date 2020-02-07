@@ -1,0 +1,313 @@
+@charset "UTF-8";
+
+$breakpoints: (
+    'xs-phone': 320px,
+    'sm-phone': 520px,
+    'phone': 640px,
+    'tablet': 768px,
+    'desktop': 1024px,
+    'widescreen': 1200px,
+    'wider': 1650px
+);
+
+// keywords
+$media-expressions: (
+    'screen': 'screen',
+    'print': 'print',
+    'handheld': 'handheld',
+    'landscape': '(orientation: landscape)',
+    'portrait': '(orientation: portrait)',
+    'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+    'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
+@import 'vendor/include-media';
+@import 'vendor/normalize';
+/* @import 'vendor/icons'; */
+@import 'vendor/fonts';
+/* @import 'vendor/jcf';
+@import 'vendor/slick';
+@import 'vendor/lightbox';
+@import 'vendor/lightslider';
+@import 'vendor/lightgallery'; */
+@import 'base/functions';
+@import 'base/variables';
+@import 'base/colors';
+@import 'base/mixins';
+@import 'base/helpers';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/highlight';
+@import 'base/forms';
+@import 'base/printresets';
+
+@import 'layouts/header';
+@import 'layouts/footer';
+/* @import 'layouts/common'; */
+
+
+/* @import 'pages/classifications';
+@import 'pages/critics';
+@import 'pages/experts';
+@import 'pages/home';
+@import 'pages/interviews';
+@import 'pages/news';
+@import 'pages/entry'; */
+
+@charset "UTF-8";
+html, body {margin:0;padding:0;}
+body {
+    text-align:center;
+    font-family: Merriweather, 'Times New Roman';
+    font-size: 1em;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-style: normal;
+    line-height:1.5em;
+}
+
+a {text-decoration:none;}
+
+p { 
+    orphans: 3;
+    widows: 3;
+    font-size: 1.5em;
+    letter-spacing: -0.02078125rem;
+    max-width: 64rem;
+    margin:1em auto;
+    
+    @include media ('<tablet') {
+        font-size: 1.15em;
+    }
+}
+
+main {
+    max-width: 48rem;
+    margin:0 auto;
+    
+    @include media ('<tablet') {
+        margin:0 20px;
+    }
+} 
+article {
+    margin:0.5em 0 2.5em 0;
+    padding:0.5em 0 2.5em 0;
+    border-bottom: 1px solid #e3e3e3;
+    
+    a > * {
+        color: inherit;
+    }
+    
+    @include media ('<tablet') {
+        margin:0.5em 20px 2.5em 20px;;
+    }
+}
+article.last {
+    border-bottom: none;
+}
+
+p.read-more {
+    color: $underline-color;
+}
+p.meta {
+    margin:0 0 0.75em 0;
+    font-size:1.15em;
+    
+    @include media ('<tablet') {
+        font-size: 1em;
+    }
+}
+
+.underline {
+    text-decoration: underline;
+    text-decoration-color: $underline-color;
+}
+
+#searchform {
+    display:inline;
+}
+
+li.srch { margin-left:20px; position:relative; }
+
+.cntr {
+    /* display: table; */
+    width: 100%;
+    position:absolute;
+    top:-7px;
+    left:0;
+}
+
+.cntr .cntr-innr {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.search {
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 30px;
+    box-sizing: border-box;
+    margin: 0px 8px 7px 0px;
+    padding: 0px 6px 0px 19px; 
+    border: 3px solid #484848;
+    border-radius: 23px;
+    -webkit-transition: all 200ms ease;
+    transition: all 200ms ease;
+    cursor: text;
+}
+
+.search:after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 17px;
+    right: -5px;
+    top: 21px;
+    background: #484848;
+    border-radius: 3px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.search.active, .search:hover {
+    width: 200px;
+    margin-right: 0px;
+}
+
+.search.active:after, .search:hover:after {
+    height: 0px;
+}
+
+.search input {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    color: #484848;
+    font-style: italic;
+    font-size: 1.1em;
+    font-weight: 300;
+    background: transparent;
+    outline-width: 0px;
+    padding:0;
+    height:30px;
+    margin-top:-2px;
+}
+
+section.main-article { 
+    text-align: left;
+    color: #484848;
+    p {margin:1em 0;}
+    p.meta {text-align:center;}
+    h1 {text-align: center; margin-bottom: .5em;}
+    div.summary p {
+    text-align:center;
+        font-size: 1.45em;
+        margin-bottom: 1.5em;
+    }
+    div.content p {
+        font-size: 1.1em;
+    }
+}
+
+blockquote {
+    padding: 2em 0;
+    position: relative;
+}
+
+blockquote:before {
+    position: absolute;
+    color: #29AB87;
+    content: '“'; /*open-quote*/
+    font-size: 4em;
+    left: .25em;
+    top: .75em; margin-left : -0.6em;
+    margin-top: -0.4em;
+    margin-left: -0.6em;
+    z-index:1;
+}
+
+blockquote p {
+    display: inline;
+    padding: 0 0 0 1em;
+}
+
+blockquote footer {
+    padding: 0 0 0 1em;
+}
+
+@media (min-width: 620px) {
+    dl, ol, p, table, ul {
+        margin: 2rem 0 2rem;
+        font-size: 1.3rem;
+    }
+}
+dl, ol, p, table, ul {
+    margin: 1.5rem 0 1.5rem;
+    font-size: 1.15rem;
+}
+
+dl dd, dl dt, ol li, ul li {
+    margin: .5rem 0 0.5rem 0;
+}
+
+main ul {
+  list-style: none;
+}
+
+main ul li::before {
+  content: "\2022";
+  color: #29AB87;
+  font-weight: 800;
+  font-family: 'lineto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em;
+  line-height:inherit;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+    font-family: 'lineto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+td, th {
+    text-align: left;
+    padding: .75rem !important;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-break: break-word;
+}
+
+td {
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    border-bottom: 2px solid #29AB87;
+}
+
+
+tbody tr:nth-child(2n) {
+    background-color: lighten(#29AB87, 57); /*f8f8f8*/
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-top-color: inherit;
+    border-right-color: inherit;
+    border-bottom-color: inherit;
+    border-left-color: inherit;
+}

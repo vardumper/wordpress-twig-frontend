@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+/* a11y-dark theme */
+/* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
+/* @author: ericwbailey */
+
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #d4d0ab;
+}
+
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #ffa07a;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5ab35;
+}
+
+/* Yellow */
+.hljs-attribute {
+  color: #ffd700;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #abe338;
+}
+
+/* Blue */
+.hljs-title,
+.hljs-section {
+  color: #00e0e0;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #dcc6e0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #333;
+  color: #f8f8f2;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+
+@media screen and (-ms-high-contrast: active) {
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-bullet,
+  .hljs-comment,
+  .hljs-link,
+  .hljs-literal,
+  .hljs-meta,
+  .hljs-number,
+  .hljs-params,
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-type,
+  .hljs-quote {
+        color: highlight;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+        font-weight: bold;
+    }
+}
+
+@media ( min-width : 620px) {
+    code, code[class*=language-], pre.language-terminal code.language-terminal, pre[class*=language-],
+        pre code {
+        font-size: 14px;
+    }
+}
+
+code[class*=language-], pre[class*=language-], pre code {
+    font-family: Menlo, Roboto Mono, Courier New, monospace;
+    font-size: 13px;
+    color: #b3b9c5;
+    direction: ltr;
+    text-align: left;
+    white-space: pre-wrap;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.7;
+    font-weight: 400;
+    margin: 2rem 0;
+    -moz-tab-size: 2;
+    -o-tab-size: 2;
+    tab-size: 2;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    border-radius: 4px;
+    -webkit-font-smoothing: antialiased;
+}
+
+pre code {
+    display: block;
+    padding: 1.5rem;
+    overflow: auto;
+    background-color: #333;
+    border: 0;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, .15);
+}
+
+.filename {
+    background: #111;
+    padding: .5rem 1rem .75rem;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 700;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-bottom: -2.2rem;
+    font-family: "lineto", "helveticabold", "Inter var", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+:not(pre)>samp,
+:not(pre)>code,
+:not(pre)>code[class*=language-] {
+    padding: 3px 5px;
+    color: #111;
+    font-weight: 500;
+}
+
+:not(pre)>samp,
+:not(pre)>code {
+    border: none;
+    font-family: Menlo,Roboto Mono,Courier New,monospace;
+    border-radius: 4px;
+    background: rgba(0,0,0,.06);
+}

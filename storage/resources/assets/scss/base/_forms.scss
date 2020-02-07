@@ -1,0 +1,199 @@
+// forms
+form,
+fieldset {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+input[type='search'],
+input[type='password'],
+//input[type='url'],
+// input[type='date'],
+textarea {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    box-sizing: border-box;
+    border: 1px solid $form-element-border-color;
+    padding: $form-element-padding;
+    height: 32px;
+    width: 100%;
+    color: #171717;
+    margin-bottom: 15px;
+    outline: none; 
+
+    // &:hover {
+
+    // }
+
+    &:focus {
+        border-color: $form-element-focus-border-color;
+    }
+
+    @include placeholder {
+        color: $placeholder-color;
+    }
+}
+
+textarea {
+    height: 150px;
+}
+
+select {
+    -webkit-border-radius: 0;
+}
+
+textarea {
+    resize: vertical;
+    vertical-align: top;
+}
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='file'],
+input[type='submit'] {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    cursor: pointer;
+    color: $white;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: capitalize;
+    border: none;
+    border-radius: 5px;
+    min-width: 156px;
+    height: 32px;
+    padding: 5px;
+    font-family: 'Univers LT W01_45 Light1475944';
+    letter-spacing: 0.03em;
+    outline: none; 
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+
+.footer-block {
+    max-width: 1602px;
+    margin: -168px auto 87px;
+    min-height: 275px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $white;
+    font-size: 16px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 25px 15px;
+    position: relative;
+    z-index: 1;
+    font-family: 'Univers LT W01_55 Roman1475956';
+
+  @include media ('<1632px') {
+      margin-left: 15px;
+      margin-right: 15px;
+  }
+
+  @include media ('<tablet') {
+      margin-bottom: 50px;
+  }
+
+  &:after {
+      display: inline-block;
+      vertical-align: middle;
+      content: '';
+      height: 225px;
+  }
+
+  .hold {
+      width: 100%;
+  }
+
+  h3 {
+      line-height: 1.2;
+      margin-bottom: 6px;
+      color: $white;
+  }
+
+  p {
+      margin-bottom: 26px;
+  }
+
+  .btn-black {
+    min-width: 323px;
+    color: rgba($white, .8) !important;
+
+    @include media ('<phone') {
+      min-width: 100px;
+    }
+  }
+}
+
+.subscribe-form {
+
+    .input-hold {
+        display: flex;
+        max-width: 497px;
+        margin: 0 auto;
+
+        @include media ('<phone') {
+            display: block;
+            text-align: center;
+        }
+    }
+
+    .input {
+        max-width: 342px;
+        flex: 0 0 342px;
+        padding-right: 20px;
+        position: relative;
+
+        @include media ('<phone') {
+            max-width: none;
+            padding-right: 0;
+        }
+
+        &:before {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 18px;
+            font-family: 'icomoon';
+            content: "\e901";
+            color: #dedede;
+            line-height: 1;
+            margin-top: -7px;
+            font-size: 21px;
+        }
+    }
+
+    input[type='email'] {
+        height: 45px;
+        border-color: $white;
+        padding-left: 55px;
+    }
+
+    input[type='submit'] {
+        max-width: 156px;
+        flex: 0 0 156px;
+        height: 45px;
+    }
+}
+
+
+@mixin searchPlaceholder {
+  color: #FFF;
+}
+
+@mixin smallText {
+    font-family: montserratregular, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}

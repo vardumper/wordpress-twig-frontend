@@ -1,0 +1,31 @@
+{
+	"name" : "vardumper/wordpress-xslt-frontend",
+	"description" : "This plugin dactivates the regular WordPress frontend and instead uses XML and XSLT handles all frontend requests.",
+	"type" : "wordpress-plugin",
+	"keywords" : [
+		"wordpress"
+	],
+	"license" : "GPL-2.0+",
+	"authors" : [{
+			"name" : "Erik Pöhler",
+			"email" : "support@teuton.mx",
+			"role" : "Lead Developer"
+		}
+	],
+	"autoload" : {
+		"psr-4" : {
+			"Teuton\\WordpressTwigFrontend\\" : "src"
+		}
+	},
+	"require" : {
+		"php" : ">=5.3.0",
+		"ramsey/uuid" : "^3.8",
+		"rosell-dk/webp-convert" : "^2.1",
+		"filp/whoops" : "^2.5",
+		"level-2/dice" : "^2.0",
+		"twig/twig" : "^3.0",
+		"symfony/http-foundation" : "^4.3",
+		"nikic/fast-route" : "^1.2"
+	},
+	"homepage" : "https://teuton.mx"
+}

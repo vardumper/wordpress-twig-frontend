@@ -1,0 +1,100 @@
+// Typography
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6,
+.h {
+	font-family: $headings-font-family;
+    letter-spacing: -0.043em;
+	line-height: 1.1em;
+	font-weight: 800;
+	margin: 0 0 1em;
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: $underline-color;
+}
+
+a:hover h1, a:hover .h1,
+a:hover h2, a:hover .h2,
+a:hover h3, a:hover .h3,
+a:hover h4, a:hover .h4,
+a:hover h5, a:hover .h5,
+a:hover h6, a:hover .h6,
+a:hover .h {
+    text-decoration-color: lighten($underline-color,10);
+}
+
+h1, .h1 {
+	font-size: $h1-font-size;
+	
+	@include media ('<desktop') {
+		font-size: 50px;
+	}
+
+	@include media ('<tablet') {
+		font-size: 35px;
+	}
+}
+
+h2, .h2 {
+	font-size: $h2-font-size;
+	margin-bottom: 23px;
+
+	@include media ('<desktop') {
+		font-size: 40px;
+	}
+
+	@include media ('<tablet') {
+		font-size: 30px;
+	}
+}
+
+h3, .h3 {
+	font-size: $h3-font-size;
+
+	@include media ('<tablet') {
+		font-size: 27px;
+	}
+}
+
+h4, .h4 {
+	font-size: $h4-font-size;
+}
+
+h5, .h5 {
+	font-size: $h5-font-size;
+}
+
+h6, .h6 {
+	font-size: $h6-font-size;
+}
+
+body {
+    
+}
+
+p {
+	margin: 0 0 1em;
+	line-height:$line-height-base;
+}
+
+a {
+	color: $base-link-color;
+	text-decoration: none;
+	transition:background 300ms ease, border 300ms ease, opacity 300ms ease,color 300ms ease,color 300ms ease;
+	outline: none;
+
+	&:hover {
+		text-decoration: none;
+		/* color: $hover-color; */
+	}
+}
+
+input[type='submit'] ,
+button  {
+  text-decoration: none;
+  transition:background 300ms ease, opacity 300ms ease,color 300ms ease,color 300ms ease;
+}

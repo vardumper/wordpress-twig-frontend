@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+@mixin theme($name, $primary, $link, $secondary) {
+  .#{$name} {
+    .color-bg-primary {
+      background: $primary;
+    }
+    
+    .color-bg-secondary {
+        background: $secondary;
+    }
+
+    .btn {
+      background: $primary;
+      color: #FFF;
+    }
+    
+    .btn:hover {
+      background: darken($primary, 15)
+    }
+
+    a { 
+      color: $link;
+    }
+    
+    .btn-play:hover {
+        border-color: $link;
+        color: $link !important;
+        
+        &:after {
+            border-color: transparent transparent transparent $link;
+        }
+    }
+    
+    article figure hr {
+        height: 5px;
+        background: $primary;
+        padding:0;
+        margin:0;
+        border:0;
+    }
+    
+    article.article-blue ul li {
+        background: $secondary;
+        
+    }
+    
+    .border-bottom-primary {
+        border-bottom:1px solid $primary!important;
+    }
+    
+    .footer-block {
+        background: $primary !important;
+    }  
+    
+    .article h3 a:hover {
+        color: $secondary;
+    }
+    
+    h3 a {
+        color: darken($secondary, 25);
+        text-decoration: none;
+        transition: background 300ms ease,border 300ms ease,opacity 300ms ease,color 300ms ease,color 300ms ease;
+        outline: 0;
+    }
+
+    figure.pullquote {
+        &:before {
+            color: $primary;
+        }
+        figcaption, figcaption a {
+            color: $link;
+        }
+    }
+    
+    .critics .lSSlideOuter .lSPager.lSGallery a span {
+        background: rgba( $primary, .7 );
+    }
+    .critics .lSSlideOuter .lSPager.lSGallery li.active a span {
+        background: $primary;
+    }
+  }
+}
+
+article figure hr {
+    height: 5px;
+    background: #4e93fb;
+    padding:0;
+    margin:0;
+    border:0;
+}
+
+@include theme(php, #FF9057, #c83fe7, #eb6018);
+@include theme(wordpress, #FEBD35, #c83fe7, #f0ab12);
+@include theme(woocommerce, #FF5F99, #c83fe7, #ee538d);
+@include theme(technology, #3BCDE2, #c83fe7, darken(saturate(#3BCDE2, 10),15));
+@include theme(aside, #C940EA, #c83fe7, green);
+
+.footer-block {
+    background: #3598FE !important;
+}
+
+.footer-block img {
+    -webkit-filter: grayscale(1);
+    -webkit-filter: grayscale(100%);
+    filter: gray;
+    filter: grayscale(100%);
+}
+
+$header-bg : #4e93fb;
+$header-bg-border: #3c84f0;
+
+$facebook: #3b5999;
+$twitter: #55acee;
+
+.btn-facebook {
+    background: $facebook!important;
+}
+
+.btn-twitter {
+    background: $twitter!important;
+}
