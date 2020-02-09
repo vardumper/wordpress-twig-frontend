@@ -49,19 +49,45 @@
  #             Child templates can use this to include Javascript files, etc.
 -#}
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX">
+<!--[if IE 9 ]> <html lang="de-DE" class="site-de ie9 loading-site no-js"> <![endif]-->
+<!--[if IE 8 ]> <html lang="de-DE" class="site-de ie8 loading-site no-js"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="de-DE" class="site-de loading-site no-js"><!--<![endif]-->
 <head>
     {% block head %}
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
-    <link media="all" rel="stylesheet" href="/assets/css/css.built.min.css">
+    <meta charset="UTF-8" />
+    <title>{{ option.blogname|raw }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="{{ option.blogdescription|raw }}"/>
+    <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+    <link rel="canonical" href="{{ option.siteurl }}" hreflang="en-US" />
+    <link rel="stylesheet" type="text/css" media="all" href="/assets/css/styles.css" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans&display=swap" rel="stylesheet" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ option.blogname|raw }}" />
+    <meta property="og:description" content="{{ option.blogdescription|raw }}" />
+    <meta property="og:url" content="{{ option.siteurl }}" />
+    <meta property="og:site_name" content="{{ option.blogname|raw }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="{{ option.blogdescription|raw }}" />
+    <meta name="twitter:title" content="{{ option.blogname|raw }}" />
+    <meta name="twitter:image" content="/assets/images/twitter-image.jpg" />
+    <meta name="msapplication-TileColor" content="#603cba" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png" />
+    <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/assets/favicons/site.webmanifest" />
+    <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/assets/favicons/favicon.ico" />
     {% endblock %}
 </head>
-<body{% if bodyClass is defined %} class="{{ bodyClass }}"{% endif %}>
+<body>
     {% block body %}{% endblock %}
     {% block foot %}{% endblock %}
-    <script src="/assets/js/js.built.min.js" defer="defer"></script>
+    <script src="/assets/js/scripts.js" defer="defer"></script>
 </body>
 </html>

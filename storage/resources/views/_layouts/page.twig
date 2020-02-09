@@ -1,0 +1,25 @@
+{#
+ # The Homepage Template
+ # 
+ # @category Template
+ # @package  Teuton\\WordpressXmlXsltFrontend
+ # @license  CC-BY-NC-ND-4.0
+ # @author   Erik Pöhler <info@teuton.mx>
+ # @link     https://teuton.mx/
+ #
+ # We loop over simple products first, then over product variations - all products without meta_gp_title are excluded
+ #
+ # We use two macros here, one for pricing, the other for the product title
+ #
+-#}
+{% extends "_layouts/base.twig" %}
+
+{% block body %}
+{% include "_includes/header.twig" %}
+        
+<main id="content">
+{% block main %}{% endblock %}
+</main>
+{% include "_includes/footer.twig" %}
+{% include "_includes/structured_data.twig" %}
+{% endblock %}
