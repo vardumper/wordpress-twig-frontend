@@ -18,7 +18,7 @@
     {% for item in post %}
     <article class="post{{ item.id }}" data-id="{{ item.id }}">
         <a href="/{{ item.post_name }}/" title="{{ item.post_title }}">
-            <time datetime="{{ item.post_date }}">{{ item.post_date|date('F jS, Y') }}</time>
+            <time datetime="{{ item.post_date }}">{{ item.post_date|date('F j, Y') }}</time>
             <h2>{{ item.post_title }}</h2>
             {{ item.post_excerpt|raw }}
             <p class="read-more">Read more →</p>

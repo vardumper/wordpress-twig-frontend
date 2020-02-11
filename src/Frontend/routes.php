@@ -14,7 +14,7 @@ declare(strict_types = 1);
 $routes = [
     '/[page/{page}/]' => Teuton\WordpressTwigFrontend\Frontend\Controllers\HomeController::class,
     '/search/[page/{page}/]' => Teuton\WordpressTwigFrontend\Frontend\Controllers\SearchController::class,
-    '/{post_name}/' => Teuton\WordpressTwigFrontend\Frontend\Controllers\SearchController::class,
+    '/{post_name}/' => Teuton\WordpressTwigFrontend\Frontend\Controllers\PostController::class,
 ];
 
 $dispatcher = FastRoute\cachedDispatcher(function(FastRoute\RouteCollector $router) use ($routes) {

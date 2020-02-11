@@ -1,210 +1,24 @@
 {#
- # The Medizinfuchs CSV Feed Template
+ # The Post Template
  # 
  # @category Template
- # @package  Teuton\\WordpressXmlXsltFrontend
+ # @package  Teuton\\WordpressTwigFrontend
  # @license  CC-BY-NC-ND-4.0
  # @author   Erik Pöhler <info@teuton.mx>
  # @link     https://teuton.mx/
  #
- # We loop over simple products first, then over product variations - all products without meta_gp_title are excluded
- #
- # We use two macros here, one for pricing, the other for the product title
- #
 -#}
-<!DOCTYPE html>
-<!--[if IE 9 ]> <html lang="de-DE" class="site-de ie9 loading-site no-js"> <![endif]-->
-<!--[if IE 8 ]> <html lang="de-DE" class="site-de ie8 loading-site no-js"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="de-DE" class="site-de loading-site no-js"><!--<![endif]-->
-<head>
-    <meta charset="UTF-8" />
-    <title>Erik Pöhler's Weblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" media="all" href="/assets/css/styles.css" />
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header id="site-header">
-        <h1 hidden="hidden">Erik Pöhler's Weblog</h1>
-        <nav>
-            <ul>
-                <li class="active" data-active="true"><a href="/blog" class="active"><span>Blog</span></a></li>
-                <li><a href="/cv"><span>About</span></a></li>
-                <li><a class="active" href="/contact"><span>Contact</span></a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main id="content">
-        {% for item in post %}
+{% extends "_layouts/page.twig" %}
+
+{% block main %}
+    {% for item in post %}
+        {% if item.post_name is same as('hello-world') %}
         <article class="post{{ item.id }}" data-id="{{ item.id }}">
-            <a href="/{{ item.post_name }}/" title="{{ item.post_title }}">
-                <p class="meta"><time datetime="{{ item.post_date }}">{{ item.post_date|date('F jS, Y') }}</time></p>
-                <h2>{{ item.post_title }}</h2>
-                {{ item.post_excerpt|raw }}
-                <p class="read-more">Read more →</p>
-            </a>
+            <time datetime="{{ item.post_date }}">{{ item.post_date|date('F j, Y') }}</time>
+            <h2>{{ item.post_title }}</h2>
+            <p class="excerpt">{{ item.post_excerpt|raw }}</p>
+            <div class="content">{{ item.post_content|raw }}</div>
         </article>
-        {% endfor %}
-    </main>
-
-    <main id="content">
-        <section class="main-article">
-            <article>
-                <p class="meta"><time datetime="2020-01-20 10:43:22">January 16, 2020</time></p>
-                <h1>Some article with interesting content and such</h1>
-                <div class="summary">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ipsum eros, pulvinar pharetra nulla vulputate, molestie pretium sapien. Ut ipsum libero, mattis ut imperdiet at.</p>
-                </div>
-                <div class="content">
-                    <p>Vivamus ut placerat elit, <code class="css-0">plugins</code> sit amet pharetra magna. Donec eget enim turpis. Donec id eros mauris. Nulla tempor massa dolor, eget consectetur lectus porttitor sed. Cras imperdiet mauris at elementum tincidunt. Donec sit amet fermentum lectus. Nulla facilisi. Integer egestas lacinia malesuada. Sed vulputate tincidunt lorem nec sagittis. Integer nec ex non felis aliquet eleifend non venenatis sem. Ut sit amet diam augue. Cras et ex massa.</p>
-                    <p>Fusce at lobortis massa. Nam egestas augue eget auctor volutpat. Donec faucibus sem vel facilisis fringilla. Praesent elementum bibendum elit vitae bibendum. Nulla vitae ultrices neque, id cursus elit. Ut scelerisque in justo ut tristique. Phasellus non velit in eros facilisis viverra. Donec iaculis nibh enim, a porttitor dui facilisis sit amet. Proin scelerisque erat nec erat malesuada auctor. Nulla facilisi. Proin quis tortor ac arcu congue venenatis vel non sapien. Vestibulum id risus tellus. In ut neque elementum, facilisis ante eu, finibus erat. Morbi eget finibus neque. Integer congue urna ac felis pellentesque pellentesque. Maecenas lorem risus, viverra eu lacinia id, varius eget massa.</p>
-                    <blockquote>
-                        <p>It was a bright cold day in April, and the clocks were striking thirteen.</p>
-                        <footer>
-                            First sentence in <cite><a href="http://www.george-orwell.org/1984/0.html">Nineteen Eighty-Four</a></cite> by George Orwell (Part 1, Chapter 1).
-                        </footer>
-                    </blockquote>
-                    <p>Curabitur in iaculis sem, eget viverra justo. Aliquam ut accumsan ex. Proin facilisis mi eget enim facilisis sodales. Mauris vitae lorem nibh. Phasellus dictum pulvinar metus sed cursus. Nunc id urna a est consectetur porta. Etiam semper ut libero et mattis. Integer nec nibh posuere, faucibus odio in, consequat nibh. Proin venenatis mauris ipsum, non dignissim ligula lobortis sit amet. Ut et rutrum justo. Aliquam dolor urna, volutpat a sem id, fringilla commodo augue.</p>
-                    <ul>
-                        <li>One</li>
-                        <li>Two</li>
-                    </ul>
-                    <p>Curabitur in iaculis sem, eget viverra justo. Aliquam ut accumsan ex. Proin facilisis mi eget enim facilisis sodales. Mauris vitae lorem nibh. Phasellus dictum pulvinar metus sed cursus. Nunc id urna a est consectetur porta. Etiam semper ut libero et mattis. Integer nec nibh posuere, faucibus odio in, consequat nibh. Proin venenatis mauris ipsum, non dignissim ligula lobortis sit amet. Ut et rutrum justo. Aliquam dolor urna, volutpat a sem id, fringilla commodo augue.</p>
-                    <ol>
-                        <li>Juan</li>
-                        <li>Tu</li>
-                    </ol>
-<pre>
-.div .class {
-    font-size:17px;
-}
-</pre>
-<div class="filename">.htaccess</div>
-<pre class="language-apache"><code class="hljs language-apache"><span class="hljs-attribute"><span class="hljs-nomarkup">RewriteEngine</span></span> <span class="hljs-literal">On</span>
-<span class="hljs-attribute">RewriteBase</span> /
-<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{REQUEST_FILENAME}</span> !-d
-<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{REQUEST_FILENAME}</span> !-f
-<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteRule</span></span> ^(.+)$ index.php<span class="hljs-meta"> [QSA,L]</span></code></pre>
-                    <p>Mauris vel nisl augue. Morbi elementum ligula ullamcorper iaculis luctus. Sed congue erat a risus lacinia, at sagittis nisi egestas. Suspendisse non augue rhoncus, elementum neque in, dapibus ante. Sed non erat quam. Pellentesque vel mauris purus. Suspendisse a consectetur nisl. In vulputate et lacus quis vehicula. Cras vitae feugiat eros, a ornare augue. Nulla pulvinar erat sit amet cursus imperdiet.</p>
-                    <p>Vivamus ut placerat elit, <code class="css-0">plugins</code> sit amet pharetra magna. Donec eget enim turpis. Donec id eros mauris. Nulla tempor massa dolor, eget consectetur lectus porttitor sed. Cras imperdiet mauris at elementum tincidunt. Donec sit amet fermentum lectus. Nulla facilisi. Integer egestas lacinia malesuada. Sed vulputate tincidunt lorem nec sagittis. Integer nec ex non felis aliquet eleifend non venenatis sem. Ut sit amet diam augue. Cras et ex massa.</p>
-                    <p>Fusce at lobortis massa. Nam egestas augue eget auctor volutpat. Donec faucibus sem vel facilisis fringilla. Praesent elementum bibendum elit vitae bibendum. Nulla vitae ultrices neque, id cursus elit. Ut scelerisque in justo ut tristique. Phasellus non velit in eros facilisis viverra. Donec iaculis nibh enim, a porttitor dui facilisis sit amet. Proin scelerisque erat nec erat malesuada auctor. Nulla facilisi. Proin quis tortor ac arcu congue venenatis vel non sapien. Vestibulum id risus tellus. In ut neque elementum, facilisis ante eu, finibus erat. Morbi eget finibus neque. Integer congue urna ac felis pellentesque pellentesque. Maecenas lorem risus, viverra eu lacinia id, varius eget massa.</p>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Selector</th>
-                                <th>Targets</th>
-                                <th>Example</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Universal selector</td>
-                                <td>All elements</td>
-                                <td><code class="language-text">*</code></td>
-                            </tr>
-                            <tr>
-                                <td>Type selector</td>
-                                <td>Tags, pseudo elements</td>
-                                <td><code class="language-text">h1</code>, <code
-                                        class="language-text">div</code>, <code
-                                        class="language-text">li::before</code></td>
-                            </tr>
-                            <tr>
-                                <td>Class selector</td>
-                                <td>Classes, pseudo classes</td>
-                                <td><code class="language-text">.page-header</code>, <code
-                                        class="language-text">.page-content</code>, <code
-                                        class="language-text">.list-item:hover</code></td>
-                            </tr>
-                            <tr>
-                                <td>Attribute selector</td>
-                                <td>Attributes</td>
-                                <td><code class="language-text">[alt]</code>, <code
-                                        class="language-text">[type="text"]</code>, <code
-                                        class="language-text">[lang="en"]</code></td>
-                            </tr>
-                            <tr>
-                                <td>ID selector</td>
-                                <td>IDs</td>
-                                <td><code class="language-text">#toggle</code>, <code
-                                        class="language-text">#getting-started</code>, <code
-                                        class="language-text">#about</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <p>Vivamus ut placerat elit, <code class="css-0">plugins</code> sit amet pharetra magna. Donec eget enim turpis. Donec id eros mauris. Nulla tempor massa dolor, eget consectetur lectus porttitor sed. Cras imperdiet mauris at elementum tincidunt. Donec sit amet fermentum lectus. Nulla facilisi. Integer egestas lacinia malesuada. Sed vulputate tincidunt lorem nec sagittis. Integer nec ex non felis aliquet eleifend non venenatis sem. Ut sit amet diam augue. Cras et ex massa.</p>
-                    <p>Fusce at lobortis massa. Nam egestas augue eget auctor volutpat. Donec faucibus sem vel facilisis fringilla. Praesent elementum bibendum elit vitae bibendum. Nulla vitae ultrices neque, id cursus elit. Ut scelerisque in justo ut tristique. Phasellus non velit in eros facilisis viverra. Donec iaculis nibh enim, a porttitor dui facilisis sit amet. Proin scelerisque erat nec erat malesuada auctor. Nulla facilisi. Proin quis tortor ac arcu congue venenatis vel non sapien. Vestibulum id risus tellus. In ut neque elementum, facilisis ante eu, finibus erat. Morbi eget finibus neque. Integer congue urna ac felis pellentesque pellentesque. Maecenas lorem risus, viverra eu lacinia id, varius eget massa.</p>
-                </div>
-            </article>
-        </section>
-    </main>
-
-    <footer id="site-footer" role="contentinfo" class="header-footer-group">
-        <div class="inner">
-            <div class="col-1">
-                <h3>About me</h3>
-                <p>Erik is a father, husband, techno lover and citizen of the world. I have more than 12 years of experience in web devlopment. Human Resource people call me a Full-Stack PHP Developer. I am expert in E-Commerce, Website-Performance, Backend PHP Development as well as <abbr title="Customer Relationship Management">CRM</abbr> & <abbr title="Enterprise Resource Plannin">ERP</abbr> Implementations. <a href="">Get a quote</a> on the IT Consulting services.</p>
-            </div>
-            <div class="col-2">
-                <h3>Contact</h3>
-                <address translate="no" typeof="schema:PostalAddress">
-                    <span property="schema:name">Erik Pöhler</span><br>
-                    <span property="schema:addressLocality">Greater Berlin Area</span>,
-                    <abbr hidden="hidden" title="Massachusetts" property="schema:addressRegion">B</abbr>
-                    <span hidden="hidden" property="schema:postalCode">10115</span> <abbr hidden="hidden" property="schema:addressCountry">DE</abbr><br />Germany<br />
-                    Email: <a class="underline contact-url" href="mailto:sayhello@erikpoehler.com?subject=Hello">sayhello@erikpoehler.com</a><br />
-                    Slack: <a class="underline" href="//teuton-digital.slack.com">Teuton Digital</a>
-                </address>
-                
-                <h4>Privacy & Security</h4>
-                <p>This website respects your privacy, therefor no visitor is tracked nor any information stored. It is 100% compliant with <a title="General Data Protection Regulation GDPR" href="https://gdpr-info.eu"><abbr title="General Data Protection Regulation GDPR">GDPR</abbr></a> regulations. This website uses a SSL certificate for maximum security.</p>
-            </div>
-            <span class="clearfix"></span>
-            <div class="section-inner small-print">
-                <div class="footer-credits">
-                    <p class="footer-copyright"><strong><small>©</small> 2020 <a href="http://localhost:8001/">Erik Pöhler's Weblog</a></strong></p>
-                    <p class="powered-by-wordpress"><a href="https://wordpress.org/">Powered by WordPress</a></p>
-                </div>
-                <a class="to-the-top" href="#site-header">
-                    <span class="to-the-top-long">To the top <span class="arrow" aria-hidden="true">↑</span></span>
-                </a>
-            </div>
-        </div>
-    </footer>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "http://erikpoehler.com",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "http://erikpoehler.com"
-  },
-  "image": [
-    "https://erikpoehler.com/assets/images/photo.jpg"
-   ],
-  "name": "Erik Pöhler",
-  "givenName": "Erik",
-  "familyName": "Pöhler",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Greater Berlin Area",
-    "addressRegion": "B",
-    "postalCode": "10115",
-    "addressCountry": "DE"
-  },
-  "birthPlace": {
-    "@type": "Place",
-    "name": "Berlin Köpenick"
-  },
-  "url": "https://erikpoehler.com",
-  "email": "sayhello@erikpoehler.com"
-}
-</script>
-</body>
-</html>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
