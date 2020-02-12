@@ -245,7 +245,7 @@ class PostManager extends ArrayManager {
         $dom->formatOutput = true;
         $dom->omitXmlDeclaration = true;
         $dom->normalizeDocument();
-        $dom->loadHTML('<?xml encoding="utf-8" ?><div>' . $content . '</div>');
+        $dom->loadHTML('<?xml encoding="utf-8" ?><body>' . $content . '</body>');
         libxml_clear_errors();
         libxml_use_internal_errors(false);
         
@@ -254,21 +254,29 @@ class PostManager extends ArrayManager {
         $clean->preserveWhiteSpace = false;
         $clean->formatOutput = false;
         $clean->omitXmlDeclaration = true;
-        $clean->loadXML('<body></body>');
+        $clean->loadXML('<div></div>');
         if ($dom->documentElement->childNodes->length) {
-            foreach ($dom->documentElement->childNodes as $node) {
+            foreach ($dom->documentElement->firstChild->childNodes as $node) {
                 switch ($node->nodeName) {
                     case 'pre':
+                        // handle code blocks differently
                         $pre = $node;
-                        $code = $pre->firstChild->nodeValue;
+                        $code = html_entity_decode($pre->firstChild->nodeValue);
                         $hl = new \Highlight\Highlighter();
-                        $hl->setAutodetectLanguages(['php', 'html', 'twig', 'sql', 'css', 'scss']);
+                        $hl->setAutodetectLanguages(['php', 'html', 'twig', 'sql', 'css', 'scss', 'bash', 'nginx']);
                         $highlighted = $hl->highlightAuto($code);
-                        $codenode = $clean->createElement('code', $highlighted);
+                        $fragment = $clean->createDocumentFragment();
+                        $fragment->appendXML($highlighted->value);
+                        $codenode = $clean->createElement('code');
+                        $codenode->appendChild($fragment);
                         $codenode->setAttribute('class', "hljs {$highlighted->language}");
                         $prenode = $clean->createElement('pre');
                         $prenode->appendChild($codenode);
                         $clean->documentElement->appendChild($prenode);
+                        break;
+                    case '#comment':
+                    case '#text':
+                        // do nothing. get rid of anything thats not html
                         break;
                     default:
                         $newnode = $clean->importNode($node, true);
@@ -323,7 +331,7 @@ class PostManager extends ArrayManager {
         $search_str = preg_replace('!\s+!', ' ', $search_str);
         $search_str = str_replace([',','.','-'], ' ', $search_str);
         $search_str = preg_replace('!\s+!', ' ', $search_str);
-        return $search_str;
+        return $this->sanitizeHtml($search_str);
     }
     
     public function update_post(int $id, \WP_Post $post ) : bool
