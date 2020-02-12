@@ -10,26 +10,18 @@
  */
 declare(strict_types = 1);
 
-use Symfony\Component\HttpFoundation\Response;
-
 $dice->addRule(\Twig\Loader\FilesystemLoader::class, [
     'constructParams' => [ WPFRONTROOT . '/storage/resources/views'],
-    'shared' => true,
+    'shared' => false,
 ]);
-
 
 $dice->addRule(\Twig\Environment::class, [
     'constructParams' => [$dice->create(Twig\Loader\FilesystemLoader::class), [
-        'cache' => WPFRONTROOT . '/storage/cache/views/',
+//         'cache' => WPFRONTROOT . '/storage/cache/views/',
         'debug' => true,
     ]],
-    'shared' => true,
+    'shared' => false,
 ]);
-
-// $dice->addRule(Template::class, [
-//     'constructParams' => [ $dice->create(Twig_Environment::class) ],
-//     'shared' => true,
-// ]);
 
 $dice->addRule(Symfony\Component\HttpFoundation\Request::class, [
     'constructParams' => [
@@ -42,6 +34,6 @@ $dice->addRule(Symfony\Component\HttpFoundation\Request::class, [
     ],
     'shared' => false,
 ]);
-// $template = $dice->create(Template::class);
+
 $request = $dice->create(Symfony\Component\HttpFoundation\Request::class);
 $response = $dice->create(Symfony\Component\HttpFoundation\Response::class);

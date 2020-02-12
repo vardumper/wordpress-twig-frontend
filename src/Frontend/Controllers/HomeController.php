@@ -62,11 +62,4 @@ class HomeController {
         $this->response->setContent($this->template->render('home.twig', $data));
         return $this->response;
     }
-
-    private function date_compare($a, $b)
-    {
-        $t1 = strtotime($a['datetime']);
-        $t2 = strtotime($b['datetime']);
-        return $t1 - $t2;
-    }
 }

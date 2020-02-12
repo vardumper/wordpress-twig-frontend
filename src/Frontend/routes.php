@@ -11,23 +11,10 @@
  */
 declare(strict_types = 1);
 
-$routes = [
-    '/[page/{page}/]' => Teuton\WordpressTwigFrontend\Frontend\Controllers\HomeController::class,
-    '/search/[page/{page}/]' => Teuton\WordpressTwigFrontend\Frontend\Controllers\SearchController::class,
-    '/{post_name}/' => Teuton\WordpressTwigFrontend\Frontend\Controllers\PostController::class,
-];
-
-$dispatcher = FastRoute\cachedDispatcher(function(FastRoute\RouteCollector $router) use ($routes) {
-    foreach($routes as $match => $route_controller) {
-        /**
-         * We'll create two routes per route – this allows us to work on this in local environments as well as in production
-         * without modifying the routes
-         * - One to access the site from dev/admin cp server
-         * - Another one for production
-         */
-        $router->addRoute('GET', $match, [$route_controller, 'render']);
-        $router->addRoute('GET', "/wp-content/plugins/wordpress-twig-frontend/public$match", [$route_controller, 'render']);
-    }
+$dispatcher = FastRoute\cachedDispatcher(function(FastRoute\RouteCollector $router) {
+    $router->addRoute('GET','/[page/{page}/]', [Teuton\WordpressTwigFrontend\Frontend\Controllers\HomeController::class, 'render']);
+    $router->addRoute(['POST','GET'],'/search/[page/{page}/]', [Teuton\WordpressTwigFrontend\Frontend\Controllers\SearchController::class, 'render']);
+    $router->addRoute('GET','/{post_name}/', [Teuton\WordpressTwigFrontend\Frontend\Controllers\PostController::class, 'render']);
 }, [ 'cacheFile' => 'storage/cache/route.cache', 'cacheDisabled' => true ]);
 
 
@@ -45,8 +32,7 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 foreach ($response->headers->all() as $key => $header) {
     header("$key: $header[0]", false);
 }
-// print_r($routeInfo);
-// exit;
+
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         $response->setContent(file_get_contents(dirname(__FILE__) .'/../../storage/resources/views/errors/404.html'));
@@ -61,5 +47,5 @@ switch ($routeInfo[0]) {
         $response = $controller->{$routeInfo[1][1]}($routeInfo[2]);
         break;
 }
-$response->prepare($dice->create(Symfony\Component\HttpFoundation\Request::class));
+$response->prepare($request);
 $response->send();

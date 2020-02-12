@@ -32,6 +32,8 @@ class PostController {
      */
     protected $template;
     
+    /** @var string */
+    protected $post_name;
     /**
      *
      * @var FormInterface
@@ -42,21 +44,18 @@ class PostController {
         Request $request,
         Response $response,
         Template $template
-        )
-    {
+    ) {
         $this->request = $request;
         $this->response= $response;
         $this->template = $template;
     }
     
-    public function render() : Response
+    public function render(array $params) : Response
     {
         /**
          * getting data
          */
         $data = include WPFRONTROOT . $this->template->getDataPath();
-        
-        // no data no feed... :(
         if (empty($data)) {
             $this->response->setContent('404 Not Found');
             $this->response->setStatusCode(404);
@@ -66,7 +65,7 @@ class PostController {
         /**
          * @desc render
          */
-        $this->response->setContent($this->template->render('post.twig', $data));
+        $this->response->setContent($this->template->render('post.twig', ['data' => $data, 'params' => $params]));
         return $this->response;
     }
 }
