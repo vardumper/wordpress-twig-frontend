@@ -57,7 +57,7 @@ class PostManager extends ArrayManager {
     private const PUBLIC_STATES = [
         'publish',
     ];
-
+    
     /**
      * Adds all posts with all public post types to the XML
      */
@@ -90,7 +90,7 @@ class PostManager extends ArrayManager {
     public function update_post_status(string $new_status, string $old_status = null, \WP_Post $post = null) : void
     {
         global $post;
-
+        
         // when a post moves to publish and wasn't there yet
         if ($new_status === 'publish' && $old_status !== 'publish') {
             $this->persist_post($post);
@@ -101,13 +101,13 @@ class PostManager extends ArrayManager {
     
     private function persist_post(\WP_Post $post, array $shipping_prices = []) : bool
     {
-//         global $wpdb, $_wp_additional_image_sizes;
+        //         global $wpdb, $_wp_additional_image_sizes;
         
         // if this post is a child, and the parent does not exists
         $parent = get_post($post->post_parent);
         if ($parent instanceof \WP_Post) {
             if ($post->post_parent !== 0 && !$this->has_post($parent)) {
-//                 error_log('We need to create the parent post first, it\'s still missing in DOM');
+                //                 error_log('We need to create the parent post first, it\'s still missing in DOM');
             }
         }
         
@@ -119,7 +119,7 @@ class PostManager extends ArrayManager {
         if (empty($post->post_excerpt)) {
             $data['post_excerpt'] = $this->create_excerpt($post->post_content);
         }
-        $data['post_content'] = $this->sanitizeHtml($post->post_content);
+        $data['post_content'] = $this->preparePostContent($post->post_content);
         $data['post_permalink'] = get_permalink($post);
         $data['post_exported_date'] = $ed;
         $data['post_exported_time'] = strtotime($ed);
@@ -148,7 +148,7 @@ class PostManager extends ArrayManager {
                 }
             }
         }
-
+        
         $meta_array = get_post_meta($post->ID,'',true);
         foreach($meta_array as $key => $value) {
             $value = $value[0];
@@ -224,7 +224,7 @@ class PostManager extends ArrayManager {
                     default:
                         break;
                 }
-
+                
                 if (!is_null($value) && !empty($value) && $skip === false ) {
                     $data[str_replace('__', '_', strtolower('meta_' . $key))] = $value;
                 }
@@ -234,6 +234,51 @@ class PostManager extends ArrayManager {
         ksort($data);
         $this->add_post($data);
         return true;
+    }
+    
+    private function preparePostContent(string $content) : string
+    {
+        libxml_use_internal_errors(true);
+        $dom = new \DOMDocument();
+        $dom->strictErrorChecking = false;
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $dom->omitXmlDeclaration = true;
+        $dom->normalizeDocument();
+        $dom->loadHTML('<?xml encoding="utf-8" ?><div>' . $content . '</div>');
+        libxml_clear_errors();
+        libxml_use_internal_errors(false);
+        
+        $clean = new \DOMDocument();
+        $clean->strictErrorChecking = false;
+        $clean->preserveWhiteSpace = false;
+        $clean->formatOutput = false;
+        $clean->omitXmlDeclaration = true;
+        $clean->loadXML('<div></div>');
+        if ($dom->documentElement->childNodes->length) {
+            foreach ($dom->documentElement->childNodes as $node) {
+                switch ($node->item(0)->nodeName) {
+                    case 'pre':
+                        $pre = $node->item(0);
+                        $code = $pre->firstChild->nodeValue;
+                        $hl = new \Highlight\Highlighter();
+                        $hl->setAutodetectLanguages(['php', 'html', 'twig', 'sql', 'css', 'scss']);
+                        $highlighted = $hl->highlightAuto($code);
+                        $codenode = $dom->createElement('code', $highlighted);
+                        $codenode->setAttribute('class', "hljs {$highlighted->language}");
+                        $prenode = $dom->createElement('pre');
+                        $prenode->appendChild($codenode);
+                        $clean->documentElement->appendChild($prenode);
+                        break;
+                    default:
+                        $newnode = $dom->importNode($node->item(0), true);
+                        $clean->documentElement->appendChild($newnode);
+                        break;
+                }
+            }
+        }
+        $return = $clean->saveXML($clean->documentElement, LIBXML_NOEMPTYTAG|LIBXML_NOXMLDECL);
+        return $this->sanitizeHtml($return);
     }
     
     private function sanitizeHtml(string $string) : string
@@ -251,14 +296,13 @@ class PostManager extends ArrayManager {
             '\\1',
             ''
         );
-        
         return preg_replace($search, $replace, $string);
     }
     
     private function create_excerpt(string $text) {
         $text = preg_replace('/[ \t]+/', ' ', preg_replace('/[\r\n]+/', '', $text));
         $text = strip_tags($text);
-        if (preg_match('/^.{1,240}\b/s', $text, $match))
+        if (preg_match('/^.{1,260}\b/s', $text, $match))
         {
             return $match[0];
         }
@@ -267,7 +311,7 @@ class PostManager extends ArrayManager {
     
     private function filter_text_for_search(string $value) : string
     {
-        /** @todo figure out language, guess, analyze, etc. (edge cases: 
+        /** @todo figure out language, guess, analyze, etc. (edge cases:
          * content is not in blog locale
          * file isnt there */
         
@@ -282,7 +326,7 @@ class PostManager extends ArrayManager {
         $search_str = preg_replace('!\s+!', ' ', $search_str);
         return $search_str;
     }
-
+    
     public function update_post(int $id, \WP_Post $post ) : bool
     {
         $this->lock();
