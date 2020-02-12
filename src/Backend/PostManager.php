@@ -74,7 +74,7 @@ class PostManager extends ArrayManager {
         foreach(self::PUBLIC_TYPES as $type) {
             $this->lock();
             // first get and create classic posts (parents)
-            $sql = sprintf("SELECT ID FROM wp_posts WHERE post_status IN (%s) AND post_type = '$type';", "'".implode("','", self::PUBLIC_STATES)."'");
+            $sql = sprintf("SELECT ID FROM wp_posts WHERE post_status IN (%s) AND post_type = '$type' ORDER BY post_date DESC;", "'".implode("','", self::PUBLIC_STATES)."'");
             $results = $wpdb->get_results( $sql, ARRAY_A);
             
             foreach($results as $post) {
