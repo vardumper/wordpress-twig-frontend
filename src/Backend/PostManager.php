@@ -257,9 +257,9 @@ class PostManager extends ArrayManager {
         $clean->loadXML('<div></div>');
         if ($dom->documentElement->childNodes->length) {
             foreach ($dom->documentElement->childNodes as $node) {
-                switch ($node->item(0)->nodeName) {
+                switch ($node->nodeName) {
                     case 'pre':
-                        $pre = $node->item(0);
+                        $pre = $node;
                         $code = $pre->firstChild->nodeValue;
                         $hl = new \Highlight\Highlighter();
                         $hl->setAutodetectLanguages(['php', 'html', 'twig', 'sql', 'css', 'scss']);
@@ -271,7 +271,7 @@ class PostManager extends ArrayManager {
                         $clean->documentElement->appendChild($prenode);
                         break;
                     default:
-                        $newnode = $dom->importNode($node->item(0), true);
+                        $newnode = $dom->importNode($node, true);
                         $clean->documentElement->appendChild($newnode);
                         break;
                 }
