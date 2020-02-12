@@ -254,7 +254,7 @@ class PostManager extends ArrayManager {
         $clean->preserveWhiteSpace = false;
         $clean->formatOutput = false;
         $clean->omitXmlDeclaration = true;
-        $clean->loadXML('<div></div>');
+        $clean->loadXML('<body></body>');
         if ($dom->documentElement->childNodes->length) {
             foreach ($dom->documentElement->childNodes as $node) {
                 switch ($node->nodeName) {
@@ -264,21 +264,20 @@ class PostManager extends ArrayManager {
                         $hl = new \Highlight\Highlighter();
                         $hl->setAutodetectLanguages(['php', 'html', 'twig', 'sql', 'css', 'scss']);
                         $highlighted = $hl->highlightAuto($code);
-                        $codenode = $dom->createElement('code', $highlighted);
+                        $codenode = $clean->createElement('code', $highlighted);
                         $codenode->setAttribute('class', "hljs {$highlighted->language}");
-                        $prenode = $dom->createElement('pre');
+                        $prenode = $clean->createElement('pre');
                         $prenode->appendChild($codenode);
                         $clean->documentElement->appendChild($prenode);
                         break;
                     default:
-                        $newnode = $dom->importNode($node, true);
+                        $newnode = $clean->importNode($node, true);
                         $clean->documentElement->appendChild($newnode);
                         break;
                 }
             }
         }
-        $return = $clean->saveXML($clean->documentElement, LIBXML_NOEMPTYTAG|LIBXML_NOXMLDECL);
-        return $this->sanitizeHtml($return);
+        return $clean->saveXML($clean->documentElement, LIBXML_NOEMPTYTAG|LIBXML_NOXMLDECL );
     }
     
     private function sanitizeHtml(string $string) : string
