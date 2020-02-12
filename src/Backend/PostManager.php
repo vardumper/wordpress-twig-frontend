@@ -244,19 +244,18 @@ class PostManager extends ArrayManager {
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
         $dom->omitXmlDeclaration = true;
-        $dom->normalizeDocument();
         $dom->loadHTML('<?xml encoding="utf-8" ?><body>' . $content . '</body>');
+        $dom->normalizeDocument();
         libxml_clear_errors();
         libxml_use_internal_errors(false);
-        
         $clean = new \DOMDocument();
         $clean->strictErrorChecking = false;
         $clean->preserveWhiteSpace = false;
         $clean->formatOutput = false;
         $clean->omitXmlDeclaration = true;
-        $clean->loadXML('<div></div>');
-        if ($dom->documentElement->childNodes->length) {
-            foreach ($dom->documentElement->firstChild->childNodes as $node) {
+        $clean->loadXML('<div class="post-content"></div>');
+        if ($dom->documentElement->firstChild->childNodes->length) {
+            foreach ($dom->documentElement->childNodes as $node) {
                 switch ($node->nodeName) {
                     case 'pre':
                         // handle code blocks differently
@@ -285,7 +284,7 @@ class PostManager extends ArrayManager {
                 }
             }
         }
-        return $clean->saveXML($clean->documentElement, LIBXML_NOEMPTYTAG|LIBXML_NOXMLDECL );
+        return $clean->saveXML($clean->documentElement->firstChild, LIBXML_NOEMPTYTAG|LIBXML_NOXMLDECL );
     }
     
     private function sanitizeHtml(string $string) : string
