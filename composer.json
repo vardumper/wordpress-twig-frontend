@@ -24,7 +24,7 @@
 		"filp/whoops" : "^2.5",
 		"level-2/dice" : "^2.0",
 		"twig/twig" : "^3.0",
-		"symfony/http-foundation" : "^4.3",
+		"symfony/http-foundation" : "^5.4",
 		"nikic/fast-route" : "^1.2"
 	},
 	"homepage" : "https://teuton.mx"
